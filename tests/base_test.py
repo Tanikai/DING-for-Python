@@ -1,8 +1,22 @@
 import unittest
 from context import dingapi
 
-api = dingapi.ding_requests()
+class TestStopFinder(unittest.TestCase):
 
-with open('stop_finder.json', 'w') as f:
-    f.write(api.stop_finder('heidenheim bahnhof'))
-    f.close()
+    def test_upper(self):
+        self.assertEqual('foo'.upper(), 'FOO')
+
+    def test_isupper(self):
+        self.assertTrue('FOO'.isupper())
+        self.assertFalse('Foo'.isupper())
+
+    def test_split(self):
+        s = 'hello world'
+        self.assertEqual(s.split(), ['hello', 'world'])
+        # check that s.split fails when the separator is not a string
+        with self.assertRaises(TypeError):
+            s.split(2)
+
+if __name__ == '__main__':
+    api = dingapi.ding_requests()
+    unittest.main()
